@@ -1,8 +1,68 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/" (click)="volver()"></ion-back-button>
+    </ion-buttons>
     <ion-title>Detalle</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
+  @if (loading) {
+    <div class="loading-container">
+      <p>Cargando...</p>
+    </div>
+  } @else if (!perro) {
+    <div class="not-found-container">
+      <h2>😕</h2>
+      <p>No se encontró la mascota</p>
+      <ion-button expand="block" (click)="volver()">Volver a la galería</ion-button>
+    </div>
+  } @else {
+    <ion-card>
+      <div class="image-container">
+        <ion-img [src]="perro.foto" [alt]="perro.nombre"></ion-img>
+        <ion-badge [color]="badgeColor" class="adoption-badge">
+          {{ estadoAdopcion }}
+        </ion-badge>
+      </div>
+
+      <ion-card-header>
+        <ion-card-title class="pet-name">{{ perro.nombre }}</ion-card-title>
+        <p class="pet-breed">{{ perro.raza }}</p>
+      </ion-card-header>
+
+      <ion-card-content>
+        <div class="detail-chips">
+          <ion-chip [color]="perro.sexo === 'Macho' ? 'primary' : 'warning'" outline>
+            {{ sexoIcono }} {{ perro.sexo }}
+          </ion-chip>
+          <ion-chip color="medium" outline>
+            {{ perro.edad }}
+          </ion-chip>
+          <ion-chip color="medium" outline>
+            {{ perro.tamano }}
+          </ion-chip>
+          <ion-chip [color]="perro.vacunada ? 'success' : 'medium'" outline>
+            {{ perro.vacunada ? '✓ Vacunado' : 'Sin vacunas' }}
+          </ion-chip>
+        </div>
+
+        <div class="description-section">
+          <h3>Descripción</h3>
+          <p>{{ perro.descripcion }}</p>
+        </div>
+
+        <div class="type-section">
+          <ion-chip [color]="'tertiary'" outline>
+            Tipo: {{ perro.tipo }}
+          </ion-chip>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-button expand="block" color="primary" (click)="volver()">
+      Volver a la galería
+    </ion-button>
+  }
 </ion-content>

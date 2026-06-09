@@ -2,7 +2,48 @@
   <ion-toolbar>
     <ion-title>Galería</ion-title>
   </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="filtroActivo" (ionChange)="onFilterChange($event)">
+      <ion-segment-button value="todos">
+        <ion-label>Todos</ion-label>
+        <ion-badge color="medium">{{ totalCount }}</ion-badge>
+      </ion-segment-button>
+      <ion-segment-button value="disponibles">
+        <ion-label>Disponibles</ion-label>
+        <ion-badge color="success">{{ disponiblesCount }}</ion-badge>
+      </ion-segment-button>
+      <ion-segment-button value="adoptados">
+        <ion-label>Adoptados</ion-label>
+        <ion-badge color="danger">{{ adoptadosCount }}</ion-badge>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
+  @if (loading) {
+    <div class="loading-container">
+      <p>Cargando mascotas...</p>
+    </div>
+  } @else if (perrosFiltrados.length === 0) {
+    <div class="empty-container">
+      <p>No hay mascotas en esta categoría</p>
+    </div>
+  } @else {
+    <ion-grid>
+      <ion-row>
+        @for (perro of perrosFiltrados; track perro.id) {
+          <ion-col size="12" size-md="6" size-lg="4" (click)="verDetalle(perro.id)">
+            <app-tarjeta-perro [perro]="perro"></app-tarjeta-perro>
+          </ion-col>
+        }
+      </ion-row>
+    </ion-grid>
+  }
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="irANuevo()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

@@ -55,14 +55,17 @@ export class PerrosService {
     },
   ];
 
+  // Este método estaba vacío, por lo que, con el this.perros y find, podemos obtener la información previamente definida.
   todas(): Perro[] {
-    return [];
+
+    return this.perros;
   }
 
   obtener(id: string): Perro | undefined {
-    return undefined;
+    return this.perros.find(perro => perro.id === parseInt(id));
   }
 
   agregar(perro: Perro): void {
+    this.perros.push(perro);
   }
 }

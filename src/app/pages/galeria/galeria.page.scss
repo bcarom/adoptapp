@@ -1,0 +1,23 @@
+.loading-container,
+.empty-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+ion-col {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+
+ion-fab-button {
+  --background: #3880ff;
+  --color: #fff;
+}

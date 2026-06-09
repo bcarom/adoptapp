@@ -1,0 +1,35 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+ion-item {
+  --border-radius: 8px;
+  margin-bottom: 8px;
+  --background: #f8f8f8;
+}
+
+ion-input,
+ion-textarea {
+  --padding-start: 12px;
+}
+
+ion-checkbox {
+  --background-checked: #3880ff;
+  --border-color-checked: #3880ff;
+}
+
+.form-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+
+ion-button {
+  --border-radius: 8px;
+  text-transform: none;
+  font-weight: 500;
+}

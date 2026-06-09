@@ -1,8 +1,79 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/" (click)="volver()"></ion-back-button>
+    </ion-buttons>
     <ion-title>Nuevo perrito</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
+  <form [formGroup]="form" (ngSubmit)="agregarPerro()">
+    
+    <ion-item>
+      <ion-label position="floating">Nombre *</ion-label>
+      <ion-input formControlName="nombre" placeholder="Ej: Max"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Tipo *</ion-label>
+      <ion-select formControlName="tipo" interface="popover">
+        <ion-select-option value="Perro">Perro</ion-select-option>
+        <ion-select-option value="Gato">Gato</ion-select-option>
+        <ion-select-option value="Otro">Otro</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Raza *</ion-label>
+      <ion-input formControlName="raza" placeholder="Ej: Labrador"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Edad *</ion-label>
+      <ion-input formControlName="edad" placeholder="Ej: 2 años"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Sexo *</ion-label>
+      <ion-select formControlName="sexo" interface="popover">
+        <ion-select-option value="Macho">Macho</ion-select-option>
+        <ion-select-option value="Hembra">Hembra</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Tamaño *</ion-label>
+      <ion-select formControlName="tamano" interface="popover">
+        <ion-select-option value="Pequeño">Pequeño</ion-select-option>
+        <ion-select-option value="Mediano">Mediano</ion-select-option>
+        <ion-select-option value="Grande">Grande</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Vacunado</ion-label>
+      <ion-checkbox formControlName="vacunada" slot="end"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-textarea formControlName="descripcion" placeholder="Cuéntanos sobre el peludo..." rows="4"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">URL de la foto *</ion-label>
+      <ion-input formControlName="foto" placeholder="https://..." type="url"></ion-input>
+    </ion-item>
+
+    <div class="form-buttons">
+      <ion-button expand="block" type="submit" [disabled]="form.invalid">
+        Agregar
+      </ion-button>
+      <ion-button expand="block" fill="outline" (click)="volver()">
+        Cancelar
+      </ion-button>
+    </div>
+
+  </form>
 </ion-content>
